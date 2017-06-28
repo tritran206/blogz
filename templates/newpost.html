@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 
+{% block head %}
+  <title>{{title}}</title>
+  <style>
+  .error { color: red; }
+  </style>
+{% endblock %}
+
 {% block content %}
 
 <form method='post' action="/addpost">
     <label>
         Blog Title:
         <input type="text" name='blog' />
+        <p class="error">{{title_error}}</p>
     </label>
     <br> <br>
-    <textarea rows="4" cols="50" name='blog_body'>
-    </textarea>
+    <textarea rows="4" cols="50" name='blog_body'></textarea>
+    <p class="error">{{body_error}}</p>
     <br>
     <input type="submit" value='Add blog' />
 </form>

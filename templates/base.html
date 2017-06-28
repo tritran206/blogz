@@ -1,9 +1,16 @@
 <!doctype html>
 <html>
     <head>
-        <title>{{title}}</title>
+      {% block head %}
+      {% endblock %}
     </head>
 <body>
+  <header>
+    <nav>
+      <a href="/blog">Home</a>
+      <a href="/newpost">Create New Post</a>
+    </nav>
+  </header>
 
     {% block content %}
     {% endblock %}
