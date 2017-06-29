@@ -19,6 +19,14 @@ class Blog(db.Model):
 
 
 @app.route('/blog')
+
+def home():
+    if 'id' in request.args:
+        return single_blog()
+    else:
+        return show_blogs()
+
+
 def show_blogs():
     blogs = Blog.query.all()
     return render_template('blogs.html', title="Your Blogs", blogs = blogs)
@@ -26,8 +34,9 @@ def show_blogs():
 
 def single_blog():
     blog_id = int(request.args.get('id'))
-    blogs = Blog.query.get(blog_id)
-    return render_template('blogs.html', title="Current Blog", blogs = blogs)
+    blog = Blog.query.get(blog_id)
+    return render_template('singleblog.html', title="Current Blog", blog = blog)
+
 
 @app.route('/newpost')
 def index():
