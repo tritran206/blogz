@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <style>
+    .error { color: red; }
+  </style>
+{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+<form action="/login" method='post'>
+  <tr>
+    <td><label for="username">Username:</label></td>
+    <td><input id="username" type="text" name="username"></td>
+  </tr>
+  <tr>
+    <td><label for="password">Password:</label></td>
+    <td><input id="password" type="password" name="password"></td>
+  </tr>
+  <input type="submit" value="login">
+</form>
+
+<p>Dont have an account?<br>
+Sign up <a href="/signup">here</a>
+{% endblock %}

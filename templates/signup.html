@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <style>
+    .error { color: red; }
+  </style>
+{% endblock %}
+
+{% block content %}
+<h1>Signup</h1>
+<form method='post' action='/signup'>
+  <table>
+    <tr>
+      <td><label>Username:</td>
+      <td><input type=text name='username' value={{username}}></label></td>
+    </tr>
+    <tr>
+      <td><label>Password:</td>
+      <td><input type=password name='password' /></label></td>
+    </tr>
+    <tr>
+      <td><label>Verify Password:</td>
+      <td><input type=password name='verify' /></label></td>
+    </tr>
+  </table>
+  <input type="submit" value='confirm' />
+</form>
+{% endblock %}
