@@ -30,6 +30,11 @@ class Blog(db.Model):
         self.body = body
         self.owner = owner
 
+@app.before_request
+def require_login():
+    allowed_routes = ['signup', '/', 'allpost', 'login']
+    if request.endpoint not in allowed_routes and 'username' not in session:
+        return redirect('/login')
 
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
