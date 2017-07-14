@@ -136,7 +136,8 @@ def login():
 
 @app.route('/logout')
 def logout():
-    del session['email']
+    if 'username' in session:
+        del session['username']
     return redirect('/login')
 
 @app.route('/blog')
