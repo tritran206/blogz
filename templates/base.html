@@ -7,10 +7,14 @@
 <body>
   <header>
     <nav>
-      <a href="/blog">Home</a>
+      <a href="/">Home</a>
+      <a href="/blog">All Posts</a>
       <a href="/newpost">Create New Post</a>
       <a href="/login">Login</a>
-      <a href="/logout">Logout</a>
+      <p>
+        {{username}}
+        <a href="/logout">Logout</a>
+      </p>
     </nav>
   </header>
     {% with messages = get_flashed_messages() %}
