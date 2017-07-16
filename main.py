@@ -32,7 +32,7 @@ class Blog(db.Model):
 
 @app.before_request
 def require_login():
-    allowed_routes = ['signup', 'home', 'allpost', 'login', '/']
+    allowed_routes = ['signup', 'home', 'allpost', 'login', 'display_users']
     if request.endpoint not in allowed_routes and 'username' not in session:
         return redirect('/login')
 
@@ -148,6 +148,8 @@ def logout():
 @app.route('/')
 def display_users():
     users = User.query.all()
+    if 'username' in session:
+        return render_template('index.html', title="Blog Users", users=users, username=session['username'])
     return render_template('index.html', title="Blog Users", users=users)
 
 @app.route('/blog')
@@ -164,23 +166,28 @@ def show_blogs():
     blogs = Blog.query.all()
     users = User.query.all()
     if 'username' in session:
-        return render_template('blogs.html', title="Your Blogs", blogs=blogs, users=users, username=session['username'])
+        return render_template('blogs.html', title="All Blogs", blogs=blogs, users=users, username=session['username'])
 
-    return render_template('blogs.html', title="Your Blogs", blogs = blogs)
+    return render_template('blogs.html', title="All Blogs", blogs = blogs)
 
 def users_blog():
     users_id = int(request.args.get('user'))
     user = User.query.get(users_id)
     blogs = Blog.query.all()
     if 'username' in session:
-        return render_template('individualuser.html', title=user.username, blogs=blogs, id=users_id)
+        return render_template('individualuser.html', title=user.username, blogs=blogs, id=users_id, user=user, username=session['username'])
+
+    return render_template('individualuser.html', title=user.username, blogs=blogs, id=users_id, user=user)
 
 
 def single_blog():
     blog_id = int(request.args.get('id'))
     blog = Blog.query.get(blog_id)
+    user_id = blog.owner_id
+    user = User.query.get(user_id)
+
     if 'username' in session:
-        return render_template('singleblog.html', title="Current Blog", blog=blog, username=session['username'])
+        return render_template('singleblog.html', title="Current Blog", user=user, blog=blog, username=session['username'])
 
     return render_template('singleblog.html', title="Current Blog", blog=blog)
 

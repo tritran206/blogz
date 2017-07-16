@@ -22,7 +22,7 @@
 
         {% for user in users %}
           {% if user.id == blog.owner_id%}
-          <h5>written by <a href="./blog?owner={{blog.owner_id}}">{{user.username}}</h5>
+          <h5>written by <a href="./blog?user={{user.id}}">{{user.username}}</h5>
           {% endif %}
         {% endfor %}
       <hr>
