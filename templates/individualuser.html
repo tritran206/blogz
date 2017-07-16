@@ -8,7 +8,7 @@
     {% if blog.owner_id == id %}
   <h3><a href="./blog?id={{blog.id}}">{{blog.title}}</a></h3>
   <p>{{blog.body}}</p>
-  <h5>written by <a href="./blog?owner={{blog.owner_id}}">{{user.username}}</h5>
+  <h5>written by <a href="./blog?user={{user.id}}">{{user.username}}</h5>
   <hr>
     {% endif %}
   {% endfor %}
