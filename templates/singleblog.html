@@ -3,14 +3,12 @@
 {% block head %}
   <title>{{title}}</title>
   <style>
-  .error { color: red; }
+    .error { color: red; }
   </style>
 {% endblock %}
 
 {% block content %}
-
   <h3>{{blog.title}}</h3>
   <p>{{blog.body}}<p>
   <h5>written by <a href="./blog?user={{user.id}}">{{user.username}}</h5>
-
 {% endblock %}
